@@ -6,19 +6,18 @@
  * @brief description of MyEntity behavior.
  */
 
-#ifndef MYENTITY_H
-#define MYENTITY_H
+#ifndef HUMAN_H
+#define HUMAN_H
 
 #include <rt2d/entity.h>
 
 /// @brief The MyEntity class is the Entity implementation.
-class MyEntity : public Entity
-{
+class Human : public Entity {
 public:
 	/// @brief Constructor
-	MyEntity();
+	Human();
 	/// @brief Destructor
-	virtual ~MyEntity();
+	virtual ~Human();
 
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
@@ -29,4 +28,4 @@ private:
 	/* add your private declarations */
 };
 
-#endif /* MYENTITY_H */
+#endif /* HUMAN_H */

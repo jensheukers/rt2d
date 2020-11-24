@@ -4,20 +4,20 @@
  * Copyright 2015 Your Name <you@yourhost.com>
  */
 
-#include "myentity.h"
+#include "human.h"
 
-MyEntity::MyEntity() : Entity()
+Human::Human() : Entity()
 {
 	this->addSprite("assets/square.tga");
 	this->sprite()->color = RED;
 }
 
-MyEntity::~MyEntity()
+Human::~Human()
 {
 
 }
 
-void MyEntity::update(float deltaTime)
+void Human::update(float deltaTime)
 {
 	// ###############################################################
 	// Rotate
