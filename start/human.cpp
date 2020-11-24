@@ -6,24 +6,38 @@
 
 #include "human.h"
 
-Human::Human() : Entity()
-{
+Human::Human() : Entity() {
+	this->health = HUMAN_MAX_HEALTH_VALUE;
+
 	this->addSprite("assets/square.tga");
 	this->sprite()->color = RED;
 }
 
-Human::~Human()
-{
+int Human::GetHealth() {
+	return this->health;
+}
+
+void Human::Heal(int amount) {
+	this->health += amount;
+
+	if (this->health > HUMAN_MAX_HEALTH_VALUE) {
+		this->health = HUMAN_MAX_HEALTH_VALUE;
+	}
 
 }
 
-void Human::update(float deltaTime)
-{
-	// ###############################################################
-	// Rotate
-	// ###############################################################
-	this->rotation.z += HALF_PI * deltaTime; // 90 deg/sec
-	if (this->rotation.z > TWO_PI) {
-		this->rotation.z -= TWO_PI;
+void Human::Damage(int amount) {
+	this->health -= amount;
+
+	if (this->health < 0) {
+		//Let human die
 	}
+}
+
+Human::~Human() {
+
+}
+
+void Human::update(float deltaTime) {
+
 }

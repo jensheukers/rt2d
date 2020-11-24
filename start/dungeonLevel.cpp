@@ -10,12 +10,13 @@
 #include "dungeonLevel.h"
 
 DungeonLevel::DungeonLevel() : Scene() {
-
+	Human* testHuman = new Human();
+	
+	this->addChild(testHuman);
 }
 
 
 DungeonLevel::~DungeonLevel() {
-
 }
 
 void DungeonLevel::update(float deltaTime) {

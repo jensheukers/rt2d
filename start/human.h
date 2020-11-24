@@ -11,21 +11,24 @@
 
 #include <rt2d/entity.h>
 
-/// @brief The MyEntity class is the Entity implementation.
+#define HUMAN_MAX_HEALTH_VALUE 100
+
 class Human : public Entity {
+private:
+	int health;
+
 public:
-	/// @brief Constructor
 	Human();
-	/// @brief Destructor
+
+	int GetHealth();
+
+	void Heal(int amount);
+
+	void Damage(int amount);
+
 	virtual ~Human();
 
-	/// @brief update is automatically called every frame
-	/// @param deltaTime the elapsed time in seconds
-	/// @return void
 	virtual void update(float deltaTime);
-
-private:
-	/* add your private declarations */
 };
 
 #endif /* HUMAN_H */

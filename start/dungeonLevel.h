@@ -11,6 +11,8 @@
 
 #include <rt2d/scene.h>
 
+#include "human.h"
+
 class DungeonLevel : public Scene {
 public:
 
