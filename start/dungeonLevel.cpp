@@ -8,11 +8,12 @@
 #include <sstream>
 
 #include "dungeonLevel.h"
+#include "player.h"
 
 DungeonLevel::DungeonLevel() : Scene() {
-	Human* testHuman = new Human();
+	Player* player = new Player();
 	
-	this->addChild(testHuman);
+	this->addChild(player);
 }
 
 
