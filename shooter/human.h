@@ -17,6 +17,9 @@ class Human : public Entity {
 private:
 	int health;
 
+
+	virtual void OnDeath();
+
 public:
 	Human();
 

@@ -8,11 +8,14 @@
 class Player : public Human {
 private:
 	float speed;
+
+	virtual void OnDeath();
+
+
 public:
 	Player();
 
 	virtual void update(float deltaTime);
-
 	~Player();
 };
 

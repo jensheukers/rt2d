@@ -6,6 +6,14 @@
 
 #include "human.h"
 
+void Human::OnDeath() {
+	//Remove us from parent
+	this->parent()->removeChild(this);
+
+	//Delete instance
+	delete this;
+}
+
 Human::Human() : Entity() {
 	this->health = HUMAN_MAX_HEALTH_VALUE;
 
@@ -31,6 +39,7 @@ void Human::Damage(int amount) {
 
 	if (this->health < 0) {
 		//Let human die
+		this->OnDeath();
 	}
 }
 
