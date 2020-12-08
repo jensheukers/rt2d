@@ -5,7 +5,7 @@ Enemy::Enemy(std::vector<Vector2> path) {
 	this->scale = Vector2(0.5f, 0.5f);
 	this->path = path;
 	this->pointRange = 5.f;
-	this->speed = 0.5f;
+	this->speed = 25.f;
 }
 
 void Enemy::update(float deltaTime) {
@@ -38,6 +38,7 @@ float Enemy::CalculateDistance(Vector2 a, Vector2 b) {
 
 void Enemy::MoveToPoint(float deltaTime) {
 	Vector2 direction = Vector2(nextPoint.x - position.x, nextPoint.y - position.y) / CalculateDistance(position , nextPoint);
-	
-	this->position += direction;
+
+
+	this->position += (direction * speed) * deltaTime;
 }

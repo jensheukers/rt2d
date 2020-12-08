@@ -19,8 +19,6 @@ DungeonLevel::DungeonLevel() : Scene() {
 
 	Enemy* enemy = new Enemy(std::vector<Vector2> {Vector2(100, 100), Vector2(300, 300), Vector2(500, 200)});
 
-	enemy->position = Vector2(200, 200);
-
 	this->addChild(enemy);
 }
 
