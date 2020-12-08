@@ -9,11 +9,17 @@
 
 #include "dungeonLevel.h"
 #include "player.h"
+#include "enemy.h"
 
 DungeonLevel::DungeonLevel() : Scene() {
 	Player* player = new Player();
 	
+
 	this->addChild(player);
+
+	Enemy* enemy = new Enemy(std::vector<Vector2> {Vector2(100, 100), Vector2(150, 150)});
+
+	this->addChild(enemy);
 }
 
 
