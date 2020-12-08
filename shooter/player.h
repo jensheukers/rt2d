@@ -4,6 +4,7 @@
 #define PLAYER_SPEED 50
 
 #include "human.h"
+#include "weapon.h"
 
 class Player : public Human {
 private:
@@ -11,6 +12,7 @@ private:
 
 	virtual void OnDeath();
 
+	Weapon* weapon;
 
 public:
 	Player();

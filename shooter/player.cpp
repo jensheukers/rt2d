@@ -11,6 +11,9 @@ void Player::OnDeath() {
 Player::Player() : Human() {
 	this->speed = PLAYER_SPEED;
 	this->scale = Vector2(0.5f, 0.5f);
+
+	this->weapon = new Weapon();
+	this->addChild(weapon);
 }
 
 void Player::update(float deltaTime) {
@@ -30,6 +33,10 @@ void Player::update(float deltaTime) {
 
 	if (input()->getKey(KeyCode::D)) {
 		this->position += ((Vector2(1, 0) * deltaTime) * speed );
+	}
+
+	if (input()->getKeyDown(KeyCode::F)) {
+		weapon->Shoot(this->parent());
 	}
 }
 
