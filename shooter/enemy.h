@@ -1,6 +1,8 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#define ENEMY_SPEED 50
+
 #include <vector>
 
 #include "human.h"

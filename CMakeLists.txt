@@ -160,6 +160,10 @@ IF(MAKE_SHOOTER)
 		shooter/dungeonLevel.h
 		shooter/player.cpp
 		shooter/player.h
+		shooter/enemy.h
+		shooter/enemy.cpp
+		shooter/weapon.h
+		shooter/weapon.cpp
 	)
 	target_link_libraries(shooter
 		${ALL_GRAPHICS_LIBS}

@@ -5,7 +5,7 @@ Enemy::Enemy(std::vector<Vector2> path) {
 	this->scale = Vector2(0.5f, 0.5f);
 	this->path = path;
 	this->pointRange = 5.f;
-	this->speed = 25.f;
+	this->speed = ENEMY_SPEED;
 }
 
 void Enemy::update(float deltaTime) {
