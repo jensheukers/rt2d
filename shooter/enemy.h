@@ -19,7 +19,9 @@ public:
 
 	void HandleMovement(float deltaTime);
 
-	void LerpToPoint(float deltaTime);
+	float CalculateDistance(Vector2 a, Vector2 b);
+
+	void MoveToPoint(float deltaTime);
 };
 
 #endif // !ENEMY_H

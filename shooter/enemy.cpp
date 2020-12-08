@@ -5,7 +5,7 @@ Enemy::Enemy(std::vector<Vector2> path) {
 	this->scale = Vector2(0.5f, 0.5f);
 	this->path = path;
 	this->pointRange = 5.f;
-	this->speed = 1.f;
+	this->speed = 0.5f;
 }
 
 void Enemy::update(float deltaTime) {
@@ -16,13 +16,7 @@ void Enemy::update(float deltaTime) {
 
 void Enemy::HandleMovement(float deltaTime) {
 	static int _INDEX = 0;
-
-	float dx = currentPoint.x - nextPoint.x;
-	float dy = currentPoint.y - nextPoint.y;
-	float distance = (float)sqrt(dx * dx + dy * dy);
-
-	if (distance <= pointRange) {
-		currentPoint = nextPoint;
+	if (CalculateDistance(position, nextPoint) <= pointRange) {
 
 		//Set next point
 		if ((_INDEX = _INDEX + 1) >= path.size()) {
@@ -33,15 +27,17 @@ void Enemy::HandleMovement(float deltaTime) {
 	}
 
 	//Lerp between the points
-	LerpToPoint(deltaTime);
+	MoveToPoint(deltaTime);
 }
 
-void Enemy::LerpToPoint(float deltaTime) {
-	static float _AMOUNT = 0.2f;
+float Enemy::CalculateDistance(Vector2 a, Vector2 b) {
+	float dx = a.x - b.x;
+	float dy = a.y - b.y;
+	return (float)sqrt(dx * dx + dy * dy);
+}
 
-	if ((_AMOUNT = _AMOUNT + (speed * deltaTime)) > 1) {
-		_AMOUNT = 0.f;
-	}
-
-	this->position =  nextPoint * _AMOUNT + currentPoint * (1.f - _AMOUNT);
+void Enemy::MoveToPoint(float deltaTime) {
+	Vector2 direction = Vector2(nextPoint.x - position.x, nextPoint.y - position.y) / CalculateDistance(position , nextPoint);
+	
+	this->position += direction;
 }
