@@ -2,7 +2,7 @@
 
 
 Enemy::Enemy(std::vector<Vector2> path) {
-	this->scale = Vector2(0.5f, 0.5f);
+	this->scale = Vector2(0.2f, 0.2f);
 	this->path = path;
 	this->pointRange = 5.f;
 	this->speed = ENEMY_SPEED;
@@ -26,6 +26,15 @@ void Enemy::HandleMovement(float deltaTime) {
 		nextPoint = path[_INDEX];
 	}
 
+	ddClear();
+
+	//Check for targets
+	for (size_t i = 0; i < targetList.size(); i++) {
+		if (CalculateDistance(targetList[i]->position, this->position) < ENEMY_SIGHT) {
+			return;
+		}
+	}
+
 	//Lerp between the points
 	MoveToPoint(deltaTime);
 }
@@ -41,4 +50,16 @@ void Enemy::MoveToPoint(float deltaTime) {
 
 
 	this->position += (direction * speed) * deltaTime;
+}
+
+void Enemy::AddToTargetList(Human* human) {
+	targetList.push_back(human);
+}
+
+void Enemy::RemoveFromTargetList(Human* human) {
+	for (size_t i = 0; i < targetList.size(); i++) {
+		if (targetList[i] == human) {
+			targetList.erase(targetList.begin(), targetList.begin() + i);
+		}
+	}
 }

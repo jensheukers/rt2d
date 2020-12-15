@@ -10,7 +10,9 @@ void Player::OnDeath() {
 
 Player::Player() : Human() {
 	this->speed = PLAYER_SPEED;
-	this->scale = Vector2(0.5f, 0.5f);
+	this->scale = Vector2(0.2f, 0.2f);
+
+	this->sprite()->color = GREEN;
 
 	this->weapon = new Weapon();
 	this->addChild(weapon);

@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #define ENEMY_SPEED 50
+#define ENEMY_SIGHT 100
 
 #include <vector>
 
@@ -14,6 +15,8 @@ private:
 	Vector2 nextPoint; // The current target vector we are walking towards
 	float pointRange; // distance between enemy and point to trigger finalization
 	float speed; // Speed
+
+	std::vector<Human*> targetList;
 public:
 	Enemy(std::vector<Vector2> path = std::vector<Vector2>());
 
@@ -24,6 +27,9 @@ public:
 	float CalculateDistance(Vector2 a, Vector2 b);
 
 	void MoveToPoint(float deltaTime);
+
+	void AddToTargetList(Human* human);
+	void RemoveFromTargetList(Human* human);
 };
 
 #endif // !ENEMY_H
