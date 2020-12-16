@@ -17,10 +17,6 @@ void Enemy::update(float deltaTime) {
 	
 	//handle our movement
 	this->HandleMovement(deltaTime);
-
-	if (input()->getKeyDown(KeyCode::G)) {
-		ShootWeapon(targetList[0]);
-	}
 }
 
 void Enemy::HandleMovement(float deltaTime) {
@@ -37,9 +33,15 @@ void Enemy::HandleMovement(float deltaTime) {
 
 	ddClear();
 
+	static int nextTime = glfwGetTime() + ENEMY_SHOOT_INTERVAL;
+	
 	//Check for targets
 	for (size_t i = 0; i < targetList.size(); i++) {
 		if (CalculateDistance(targetList[i]->position, this->position) < ENEMY_SIGHT) {
+			if (glfwGetTime() > nextTime) {
+				ShootWeapon(targetList[i]);
+				nextTime = glfwGetTime() + ENEMY_SHOOT_INTERVAL;
+			}
 			return;
 		}
 	}

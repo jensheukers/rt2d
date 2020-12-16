@@ -3,6 +3,7 @@
 
 #define ENEMY_SPEED 50
 #define ENEMY_SIGHT 100
+#define ENEMY_SHOOT_INTERVAL 2
 
 #include <vector>
 
