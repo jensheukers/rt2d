@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "human.h"
+#include "weapon.h"
 
 class Enemy : public Human {
 private:
@@ -15,6 +16,8 @@ private:
 	Vector2 nextPoint; // The current target vector we are walking towards
 	float pointRange; // distance between enemy and point to trigger finalization
 	float speed; // Speed
+
+	Weapon* weapon;
 
 	std::vector<Human*> targetList;
 public:
@@ -30,6 +33,10 @@ public:
 
 	void AddToTargetList(Human* human);
 	void RemoveFromTargetList(Human* human);
+
+	void ShootWeapon(Human* target);
+
+	~Enemy();
 };
 
 #endif // !ENEMY_H

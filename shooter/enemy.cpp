@@ -8,12 +8,19 @@ Enemy::Enemy(std::vector<Vector2> path) {
 	this->speed = ENEMY_SPEED;
 
 	this->nextPoint = this->path[0];
+
+	this->weapon = new Weapon();
+	this->addChild(weapon);
 }
 
 void Enemy::update(float deltaTime) {
 	
 	//handle our movement
 	this->HandleMovement(deltaTime);
+
+	if (input()->getKeyDown(KeyCode::G)) {
+		ShootWeapon(targetList[0]);
+	}
 }
 
 void Enemy::HandleMovement(float deltaTime) {
@@ -64,4 +71,26 @@ void Enemy::RemoveFromTargetList(Human* human) {
 			targetList.erase(targetList.begin(), targetList.begin() + i);
 		}
 	}
+}
+
+//Assume enemy is child of scene
+void Enemy::ShootWeapon(Human* target) {
+	float dx = this->position.x - target->position.x;
+	float dy = this->position.y - target->position.y;
+	Vector2 direction = Vector2(target->position.x - this->position.x, target->position.y - this->position.y) / (float)sqrt(dx * dx + dy * dy);
+
+
+	std::vector<Human*> trylist;
+
+	for (size_t i = 0; i < parent()->children().size(); i++) {
+		if (parent()->children()[i] != this && dynamic_cast<Human*>(parent()->children()[i])) {
+			trylist.push_back(dynamic_cast<Human*>(parent()->children()[i]));
+		}
+	}
+
+	weapon->Shoot(direction, trylist, parent());
+}
+
+Enemy::~Enemy() {
+	delete weapon;
 }
