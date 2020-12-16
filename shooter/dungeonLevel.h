@@ -12,6 +12,8 @@
 #include <rt2d/scene.h>
 
 class DungeonLevel : public Scene {
+private:
+	Sprite* tileMap;
 public:
 
 	DungeonLevel();

@@ -12,12 +12,16 @@
 #include "enemy.h"
 
 DungeonLevel::DungeonLevel() : Scene() {
+	tileMap = new Sprite();
+
 	Player* player = new Player();
 	player->position = Vector2(250, 250);
 
 	this->addChild(player);
 
 	Enemy* enemy = new Enemy(std::vector<Vector2> {Vector2(100, 100), Vector2(300, 300), Vector2(500, 200)});
+	enemy->position = Vector2(400, 100);
+
 	enemy->AddToTargetList(player);
 
 	ddLine(Point(100, 100), Point(300, 300), BLUE);
@@ -29,6 +33,7 @@ DungeonLevel::DungeonLevel() : Scene() {
 
 
 DungeonLevel::~DungeonLevel() {
+	delete tileMap;
 }
 
 void DungeonLevel::update(float deltaTime) {

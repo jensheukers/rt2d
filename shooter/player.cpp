@@ -38,7 +38,20 @@ void Player::update(float deltaTime) {
 	}
 
 	if (input()->getKeyDown(KeyCode::F)) {
-		weapon->Shoot(this->parent());
+		float dx = this->position.x - input()->getMouseX();
+		float dy = this->position.y - input()->getMouseY();
+		Vector2 direction = Vector2(input()->getMouseX() - this->position.x, input()->getMouseY() - this->position.y) / (float)sqrt(dx * dx + dy * dy);
+
+
+		std::vector<Human*> trylist;
+
+		for (size_t i = 0; i < parent()->children().size(); i++) {
+			if (parent()->children()[i] != this && dynamic_cast<Human*>(parent()->children()[i])) {
+				trylist.push_back(dynamic_cast<Human*>(parent()->children()[i]));
+			}
+		}
+
+		weapon->Shoot(direction, trylist, parent());
 	}
 }
 

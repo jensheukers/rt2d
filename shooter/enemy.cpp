@@ -6,6 +6,8 @@ Enemy::Enemy(std::vector<Vector2> path) {
 	this->path = path;
 	this->pointRange = 5.f;
 	this->speed = ENEMY_SPEED;
+
+	this->nextPoint = this->path[0];
 }
 
 void Enemy::update(float deltaTime) {
