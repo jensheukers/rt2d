@@ -14,7 +14,7 @@
 DungeonLevel::DungeonLevel() : Scene() {
 	tileMap = new Sprite();
 
-	Player* player = new Player();
+	player = new Player();
 	player->position = Vector2(250, 250);
 
 	this->addChild(player);
@@ -38,4 +38,8 @@ DungeonLevel::~DungeonLevel() {
 
 void DungeonLevel::update(float deltaTime) {
 
+}
+
+Player* DungeonLevel::GetPlayer() {
+	return this->player;
 }

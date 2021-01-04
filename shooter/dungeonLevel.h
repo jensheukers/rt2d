@@ -14,11 +14,15 @@
 class DungeonLevel : public Scene {
 private:
 	Sprite* tileMap;
+
+	Player* player;
 public:
 
 	DungeonLevel();
 	virtual ~DungeonLevel();
 	virtual void update(float deltaTime);
+
+	class Player* GetPlayer();
 };
 
 #endif /* DUNGEONLEVEL_H */
