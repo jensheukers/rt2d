@@ -18,6 +18,7 @@ private:
 	float pointRange; // distance between enemy and point to trigger finalization
 	float speed; // Speed
 
+
 	Weapon* weapon;
 
 	std::vector<Human*> targetList;
