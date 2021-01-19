@@ -15,6 +15,7 @@ DungeonLevel::DungeonLevel() : Scene() {
 	tileMap = new Sprite();
 
 	this->CreatePlayer(Vector2(0, 0));
+
 	this->CreateEnemy(std::vector<Vector2> {Vector2(100, 100), Vector2(300, 300), Vector2(500, 200)}, Vector2(400, 100), std::vector<Human*> { player });
 
 	ddLine(Point(100, 100), Point(300, 300), BLUE);
