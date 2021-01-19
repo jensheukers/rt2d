@@ -9,6 +9,8 @@ Enemy::Enemy(std::vector<Vector2> path) {
 
 	this->nextPoint = this->path[0];
 
+	this->position = this->path[0];
+
 	this->weapon = new Weapon();
 	this->addChild(weapon);
 }
@@ -31,8 +33,7 @@ void Enemy::HandleMovement(float deltaTime) {
 		nextPoint = path[_INDEX];
 	}
 
-	ddClear();
-
+	//TODO: Store variable on instance instead of static, so that multiple enemies can shoot at the same time
 	static int nextTime = glfwGetTime() + ENEMY_SHOOT_INTERVAL;
 	
 	//Check for targets

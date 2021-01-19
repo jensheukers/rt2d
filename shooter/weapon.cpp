@@ -39,9 +39,11 @@ void Projectile::Destroy() {
 	delete this;
 }
 
-void Weapon::Shoot(Vector2 direction, std::vector<Human*> tryList, Entity* scene) {
+Projectile* Weapon::Shoot(Vector2 direction, std::vector<Human*> tryList, Entity* scene) {
 	//Spawn projectile
 	Projectile* projectile = new Projectile(direction, tryList);
 	projectile->position = this->parent()->position;
 	scene->addChild(projectile);
+
+	return projectile;
 }

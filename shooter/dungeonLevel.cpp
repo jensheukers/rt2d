@@ -19,16 +19,24 @@ DungeonLevel::DungeonLevel() : Scene() {
 
 	this->addChild(player);
 
-	Enemy* enemy = new Enemy(std::vector<Vector2> {Vector2(100, 100), Vector2(300, 300), Vector2(500, 200)});
-	enemy->position = Vector2(400, 100);
+	{
+		Enemy* enemy = new Enemy(std::vector<Vector2> {Vector2(100, 100), Vector2(300, 300), Vector2(500, 200)});
+		enemy->AddToTargetList(player);
+		this->addChild(enemy);
 
-	enemy->AddToTargetList(player);
+		Enemy* enemy2 = new Enemy(std::vector<Vector2> {Vector2(700, 300), Vector2(200, 300), Vector2(500, 400)});
+		enemy2->AddToTargetList(player);
+		this->addChild(enemy2);
 
-	ddLine(Point(100, 100), Point(300, 300), BLUE);
-	ddLine(Point(300, 300), Point(500, 200), BLUE);
-	ddLine(Point(500, 200), Point(100, 100), BLUE);
+		enemy2->AddToTargetList(enemy);
 
-	this->addChild(enemy);
+		ddLine(Point(700, 300), Point(200, 300), BLUE);
+		ddLine(Point(200, 300), Point(500, 400), BLUE);
+		ddLine(Point(500, 400), Point(700, 300), BLUE);
+
+
+
+	}
 }
 
 

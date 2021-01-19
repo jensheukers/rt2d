@@ -28,7 +28,7 @@ public:
 
 class Weapon : public Entity {
 public:
-	void Shoot(Vector2 direction, std::vector<Human*> tryList, Entity* scene);
+	Projectile* Shoot(Vector2 direction, std::vector<Human*> tryList, Entity* scene);
 
 	void update(float deltaTime) {};
 };
