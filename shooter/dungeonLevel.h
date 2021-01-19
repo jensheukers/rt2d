@@ -14,11 +14,22 @@
 class DungeonLevel : public Scene {
 private:
 	Sprite* tileMap;
+
+	class Player* player;
+
+	std::vector<class Pickup*> pickups; // All pickups in the level
+	std::vector<class Enemy*> enemies; // All enemies in the level
 public:
 
 	DungeonLevel();
 	virtual ~DungeonLevel();
 	virtual void update(float deltaTime);
+
+	class Player* GetPlayer();
+
+	class Player* CreatePlayer(Vector2 pos = Vector2(0,0)); // Safely create a player instance
+
+	class Enemy* CreateEnemy(std::vector<Vector2> path, Vector2 pos = Vector2(0, 0), std::vector<class Human*> targetList = std::vector<class Human*>{});
 };
 
 #endif /* DUNGEONLEVEL_H */

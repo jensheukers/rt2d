@@ -14,29 +14,12 @@
 DungeonLevel::DungeonLevel() : Scene() {
 	tileMap = new Sprite();
 
-	Player* player = new Player();
-	player->position = Vector2(250, 250);
+	this->CreatePlayer(Vector2(0, 0));
+	this->CreateEnemy(std::vector<Vector2> {Vector2(100, 100), Vector2(300, 300), Vector2(500, 200)}, Vector2(400, 100), std::vector<Human*> { player });
 
-	this->addChild(player);
-
-	{
-		Enemy* enemy = new Enemy(std::vector<Vector2> {Vector2(100, 100), Vector2(300, 300), Vector2(500, 200)});
-		enemy->AddToTargetList(player);
-		this->addChild(enemy);
-
-		Enemy* enemy2 = new Enemy(std::vector<Vector2> {Vector2(700, 300), Vector2(200, 300), Vector2(500, 400)});
-		enemy2->AddToTargetList(player);
-		this->addChild(enemy2);
-
-		enemy2->AddToTargetList(enemy);
-
-		ddLine(Point(700, 300), Point(200, 300), BLUE);
-		ddLine(Point(200, 300), Point(500, 400), BLUE);
-		ddLine(Point(500, 400), Point(700, 300), BLUE);
-
-
-
-	}
+	ddLine(Point(100, 100), Point(300, 300), BLUE);
+	ddLine(Point(300, 300), Point(500, 200), BLUE);
+	ddLine(Point(500, 200), Point(100, 100), BLUE);
 }
 
 
@@ -45,5 +28,34 @@ DungeonLevel::~DungeonLevel() {
 }
 
 void DungeonLevel::update(float deltaTime) {
+
+}
+
+Player* DungeonLevel::GetPlayer() {
+	return this->player;
+}
+
+Player* DungeonLevel::CreatePlayer(Vector2 pos) {
+	player = new Player();
+	
+	player->position = pos;
+
+	this->addChild(player);
+
+	return player;
+}
+
+Enemy* DungeonLevel::CreateEnemy(std::vector<Vector2> path, Vector2 pos, std::vector<class Human*> targetList) {
+	Enemy* enemy;
+	enemy = new Enemy(path);
+	enemy->position = pos;
+		
+	for (size_t i = 0; i < targetList.size(); i++) {
+		enemy->AddToTargetList(targetList[i]);
+	}
+
+	this->addChild(enemy);
+
+	return enemy;
 
 }
